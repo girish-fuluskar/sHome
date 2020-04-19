@@ -6,12 +6,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content padding>
+  <button ion-button (click) = "listPairedDevices()">
+    <ion-icon name="refresh"></ion-icon>&nbsp;Refresh Bluetooth Devices
+  </button>
+    <ion-row>
+      <ion-col>
+        <ion-list radio-group [(ngModel)]="paireDeviceID" *ngIf="listToggle">
+          <ion-item *ngFor="let i of pariredList; let j=index">
+            <ion-label>{{i.name}}</ion-label>
+            <ion-radio value="{{j}}"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <button ion-button full class="submit-button" *ngIf="listToggle" (click)="selectDevice()">
+      <ion-icon name="bluetooth"></ion-icon>&nbsp;Connect Bluetooth Device 
+    </button>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Type the data you want to send</ion-label>
+        <ion-input type="text" name="datasend" [(ngModel)] = "dataSend"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button full class="submit-button" (click)="sendData()">
+      <ion-icon name="send"></ion-icon>&nbsp;Send Data via Bluetooth
+  </button>
 </ion-content>

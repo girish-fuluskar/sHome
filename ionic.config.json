@@ -1,5 +1,7 @@
 {
   "name": "sHome",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
